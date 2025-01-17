@@ -1,4 +1,4 @@
-package util;
+package prettyhtml;
 
 import org.w3c.tidy.Tidy;
 
