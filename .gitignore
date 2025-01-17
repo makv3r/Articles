@@ -6,7 +6,6 @@ out/
 .idea/
 .idea
 .repository/
-*.iml
 *.iws
 *.jrtc
 *.class
