@@ -1,22 +1,12 @@
 package readwrite;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 /**
  * All possible way to read and write to a string file with standard Java IO api.
  */
 
-public class ReadWrite {
-
-    public static void fileWriterUsingFiles(String filename, String text) throws IOException {
-        Files.writeString(Path.of(filename), text);
-    }
-
-    public static String fileReaderUsingFiles(String filename) throws IOException {
-        return Files.readString(Path.of(filename));
-    }
+public final class ReadWriteExample {
 
     public static void fileWriter(String filename, String text) throws IOException {
         try (FileWriter fileWriter = new FileWriter(filename)) {
@@ -91,22 +81,23 @@ public class ReadWrite {
     }
 
     public static void main(String[] args) throws IOException {
-        String filename = "file.txt";
+        String filename = "java-io-file.txt";
         String text = "This is a test for file read/write operations in Java.";
 
-        fileWriterUsingFiles(filename, text);
-        System.out.println(fileReaderUsingFiles(fileReader(filename)));
+        try {
+            fileWriter(filename, text);
+            System.out.println(fileReader(filename));
 
-        fileWriter(filename, text);
-        System.out.println(fileReader(filename));
+            bufferedFileWriter(filename, text);
+            System.out.println(bufferedFileReader(filename));
 
-        bufferedFileWriter(filename, text);
-        System.out.println(bufferedFileReader(filename));
+            fileOutputStream(filename, text);
+            System.out.println(fileInputStream(filename));
 
-        fileOutputStream(filename, text);
-        System.out.println(fileInputStream(filename));
-
-        bufferedFileOutputStream(filename, text);
-        System.out.println(bufferedFileInputStream(filename));
+            bufferedFileOutputStream(filename, text);
+            System.out.println(bufferedFileInputStream(filename));
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
     }
 }
